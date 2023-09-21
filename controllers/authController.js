@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcryptjs = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const randomstring = require("randomstring");
-
+const axios= require("axios")
 
 const genreateToekn = async (id) => {
   return await jwt.sign({ userId: id }, process.env.JWT_SECRET, {
@@ -128,4 +128,5 @@ const forgetPasswordContoller = async (req, res, next) => {
     next(error);
   }
 };
+
 module.exports = { Register, Login, forgetPasswordContoller };

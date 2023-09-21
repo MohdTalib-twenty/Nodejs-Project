@@ -4,6 +4,8 @@ const cors = require("cors")
 const morgan = require("morgan");
 const connectDb=require("./config/db")
 const authRoutes = require("./routes/authRoutes");
+const postRoutes = require("./routes/postsRoutes")
+const axios = require("axios")
 const errorMiddleware = require("./middlewares/errorMiddleware");
 const { forgetPasswordContoller } = require("./controllers/authController");
 
@@ -19,8 +21,10 @@ app.use(morgan('dev'))
 
 
 
+  
 app.use("/api/auth",authRoutes)
 app.use('/api/user/forget-password',forgetPasswordContoller)
+app.use('/api/post',postRoutes)
 app.use(errorMiddleware)
 const PORT = process.env.PORT || 8000;
 app.listen(PORT,()=>{
