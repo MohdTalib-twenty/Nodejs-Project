@@ -128,5 +128,19 @@ const forgetPasswordContoller = async (req, res, next) => {
     next(error);
   }
 };
-
-module.exports = { Register, Login, forgetPasswordContoller };
+const getUserInfo=async(req,res,next)=>{
+  try {
+    const user = await User.findById(req.user.userId);
+    if(user){
+      res.status(200).send({
+        success:true,
+        user
+      })
+    }else{
+      next("Something went wrong")
+    }
+  } catch (error) {
+    next(error)
+  }
+}
+module.exports = { Register, Login, forgetPasswordContoller ,getUserInfo};
